@@ -20,4 +20,4 @@
 ## My Implementation Repository
 SOC Lab Project (This Work): https://github.com/samiul008ghub/soc_setup/ 
 
-**Note**This project uses a pre-built and automated SOC deployment repository to simplify the setup process. Instead of manually installing and configuring each component (Wazuh, Elasticsearch, Kibana, and Suricata), the entire SOC stack is deployed using a single integrated script from the following GitHub repository
+**Note** This project uses a pre-built and automated SOC deployment repository to simplify the setup process. Instead of manually installing and configuring each component (Wazuh, Elasticsearch, Kibana, and Suricata), the entire SOC stack is deployed using a single integrated script from the following GitHub repository
