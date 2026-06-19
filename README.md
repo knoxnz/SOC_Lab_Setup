@@ -73,6 +73,70 @@ After successful installation, the Wazuh dashboard (Kibana) can be accessed thro
 
 ![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/07b1e21df68642055cd24bbfabcb4a3b653e3eb4/images/8.png)
 
+## Wazuh Agent Connection Setup
+## Objective:
+This section explains how to connect a Windows 10 endpoint with the Wazuh Manager running on the Kali/Ubuntu SIEM server.
+
+## Step 1 — Add Windows Agent from Wazuh Dashboard
+First, open Wazuh Dashboard:
+https://localhost:5601 OR https://YOUR_IP:5601
+
+Navigate to:
+```text
+Agents → Add Agent
+```
+## Step 2 — Configure Agent Details
+Select the operating system:
+```text
+Windows
+```
+### Configure Agent Information
+Wazuh Server Address:
+Enter the IP address of the SIEM server: <WAZUH_SERVER_IP>
+
+Agent Name:
+Set a custom agent name: SOC_Lab
+
+## Step 3 — Install and Enroll Agent
+After providing the details:
+Click:
+```text
+Install and enroll the agent
+```
+Wazuh will generate a Windows installation command. Copy the generated command.
+
+## Step 4 — Install Agent on Windows 10
+1. On the Windows VM: Open PowerShell
+2. Select: Run as Administrator
+3. aste the copied Wazuh installation command
+4. Wait until installation and enrollment complete.
+
+## Step 5 — Start Wazuh Agent Service
+After installation, start the agent -
+Open Administrator CMD / PowerShell:
+```powershell
+NET START Wazuh
+```
+## Step 6 — Verify Agent Connection
+Go back to Wazuh Dashboard:
+Navigate:
+```text
+Agents → All Agents
+```
+Expected result:
+```text
+Agent Name: SOC_Lab
+Status: Active
+```
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/8f3c198443c341082efcd3f6dc70e5b9046c0e9e/images/9.png)
+
+## Result
+After successful enrollment:
+✔ Windows endpoint connected with Wazuh Manager
+✔ Windows logs can be collected
+✔ Sysmon events can be forwarded
+✔ Security alerts will appear in Kibana dashboard
+
 ## Install Sysmon (Windows) && sysmonxml file 
 Sysmon is required for advanced Windows event logging and process injection detection.
 
