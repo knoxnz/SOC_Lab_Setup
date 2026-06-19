@@ -70,6 +70,7 @@ After successful installation, the Wazuh dashboard (Kibana) can be accessed thro
 
 * Username: elastic (or as configured in setup script)
 * Password: (provided during installation or setup output)
+
 ![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/07b1e21df68642055cd24bbfabcb4a3b653e3eb4/images/8.png)
 
 ## Install Sysmon (Windows) && sysmonxml file 
@@ -78,6 +79,7 @@ Sysmon is required for advanced Windows event logging and process injection dete
 ### Step 1: Download Sysmon
 Download Sysmon from Microsoft Sysinternals:
 [Sysinternals Sysmon](https://download.sysinternals.com/files/Sysmon.zip)
+
 ### Step 2: Download symon.xml file
 Download Symon.xml file from:
 [sysmonconfig.xml](https://wazuh.com/resources/blog/emulation-of-attack-techniques-and-detection-with-wazuh/sysmonconfig.xml)
