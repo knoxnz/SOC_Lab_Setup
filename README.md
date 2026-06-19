@@ -358,6 +358,36 @@ Check logs in:
 - Alerts → Process Injection Detection
 - Sysmon events
 
-**Note** Reference Implementation
-This setup is based on official Wazuh research: (https://wazuh.com/blog/detecting-process-injection-attacks-with-wazuh/) 
+## Conclusion
 
+This project demonstrates the implementation of a complete SOC monitoring environment using open-source security tools.
+
+The lab successfully integrates:
+
+- Wazuh SIEM for security monitoring and alert generation
+- Suricata IDS for network traffic analysis
+- Sysmon for Windows endpoint visibility
+- Windows Wazuh Agent for log collection
+- Kibana Dashboard for security event visualization
+
+The project also demonstrates detection of process injection attacks (DLL Injection) using Sysmon telemetry and Wazuh detection rules. This hands-on implementation provides practical experience with SIEM deployment, endpoint monitoring, threat detection, and SOC investigation workflow.
+
+## Future Improvements
+
+Future enhancements that can be added:
+
+- Add more MITRE ATT&CK technique detections
+- Create custom Wazuh dashboards
+- Integrate threat intelligence feeds
+- Add automated response actions
+- Implement email/Telegram alert notifications
+- Add malware analysis workflow
+- Integrate SOAR automation
+
+## ⚠️ Disclaimer
+
+This project was created for educational and research purposes only.
+
+All attack simulations were performed inside an isolated virtual lab environment. The techniques demonstrated should only be used on systems where proper authorization is provided.
+
+---
