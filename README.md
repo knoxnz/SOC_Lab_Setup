@@ -59,6 +59,19 @@ Follow on-screen prompts to install:
 * Filebeat
 * Suricata (NIDS)
 
+## 🌐 Access Wazuh Dashboard (Kibana)
+
+After successful installation, the Wazuh dashboard (Kibana) can be accessed through a web browser.
+
+### 🔗 URL: https://Your_IP:5601 OR https://localhost:5601
+
+## Login Credentials
+- Use the credentials generated during installation:
+
+* Username: elastic (or as configured in setup script)
+* Password: (provided during installation or setup output)
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/07b1e21df68642055cd24bbfabcb4a3b653e3eb4/images/8.png)
+
 ## Install Sysmon (Windows) && sysmonxml file 
 Sysmon is required for advanced Windows event logging and process injection detection.
 
