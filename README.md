@@ -90,7 +90,7 @@ Use the official reference from Wazuh documentation:
 Before starting the setup, all required tools and configurations must be downloaded and installed on both the Server (Kali/Ubuntu) and the Windows Wazuh Agent machine.
 
 ## Suricata + Wazuh Rule Configuration (Kali Linux)
-## Objective
+## Objective:
 This section describes how to configure Suricata custom rules and Wazuh detection rules for detecting network threats and process injection activity.
 
 ### Step 1 — Switch to Root User
@@ -109,12 +109,14 @@ nano suricata.yaml
 Add Custom Rule File -
 Find section:
 ```yaml
-rule-files:
+rule-files
 ```
 Add:
 ```yaml
 - local.rules
 ```
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/315bb21e44a6972dff75d2a839a8b0c863cf12d0/1.png)
+
 **Note:** Important Note
 Check default rule path:
 default-rule-path: /var/lib/suricata/rules
@@ -130,7 +132,7 @@ Create rule file:
 ```bash
 nano local.rules
 ```
-🔹 Example Custom Rule (HTTP Detection):
+- Example Custom Rule (HTTP Detection):
 ```bash
 alert http any any -> any any (
 msg:"SOC ALERT: Suspicious HTTP User-Agent Detected";
@@ -141,6 +143,8 @@ sid:1000003;
 rev:1;
 )
 ```
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/315bb21e44a6972dff75d2a839a8b0c863cf12d0/2.png)
+
 Restart Suricata:
 ```bash
 systemctl restart suricata
@@ -151,7 +155,7 @@ Navigate to Wazuh rules directory:
 cd /var/ossec/etc/rules
 ls
 ```
-🔹 Edit Local Rules File:
+- Edit Local Rules File:
 ```bash
 nano local_rules.xml
 ```
@@ -175,13 +179,14 @@ Add DLL Injection Detection Rule:
 
 </group>
 ```
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/315bb21e44a6972dff75d2a839a8b0c863cf12d0/3.png)
+
 Restart Wazuh Manager:
 ```bash
 systemctl restart wazuh-manager
 ```
 ## Windows 10 Wazuh Agent Setup(Sysmon + DLL Injection Detection)
-Objective
-
+### Objective:
 This section explains how to configure a Windows 10 endpoint for process injection (DLL Injection) detection using:
 * Sysmon
 * Wazuh
@@ -200,6 +205,8 @@ Open sysmonconfig.xml and ensure the following monitoring rules are included:
 <ProcessAccess onmatch="include"/>
 <CreateRemoteThread onmatch="include"/>
 ```
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/315bb21e44a6972dff75d2a839a8b0c863cf12d0/4.png)
+
 ### Purpose:
 * Detect process creation events
 * Detect process access (suspicious behavior)
@@ -211,6 +218,8 @@ Open PowerShell (Run as Administrator):
 cd C:\Sysmon
 .\Sysmon64.exe -accepteula -i sysmonconfig.xml
 ```
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/315bb21e44a6972dff75d2a839a8b0c863cf12d0/5.png)
+
 ✔ This installs Sysmon with the custom configuration.
 
 ### Step 4 — Install Required Dependencies
@@ -222,7 +231,7 @@ Navigate to Wazuh agent directory:
 ```text
 C:\Program Files (x86)\ossec-agent
 ```
-🔹 Edit configuration file:
+- Edit configuration file:
 Open ossec.conf as Administrator and add:
 ```xml
 <localfile>
@@ -230,6 +239,8 @@ Open ossec.conf as Administrator and add:
   <log_format>eventchannel</log_format>
 </localfile>
 ```
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/315bb21e44a6972dff75d2a839a8b0c863cf12d0/6.png)
+
 **Note:** Purpose: This enables Wazuh agent to collect Sysmon event logs from Windows Event Viewer.
 
 ### Step 6 — Restart Wazuh Agent
@@ -247,6 +258,8 @@ Run the injection tool in Administrator CMD:
 ```cmd
 InjectProc.exe dll_inj hello-world-x64.dll cmd.exe
 ```
+![image alt](https://github.com/knoxnz/SOC_Lab_Setup/blob/315bb21e44a6972dff75d2a839a8b0c863cf12d0/7.png)
+
 ### Expected Result:
 * DLL injected into cmd.exe
 * Sysmon logs generated (Event Viewer)
